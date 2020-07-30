@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <img src="@/assets/logo.png" alt="">
+    <h2>hello supermall</h2>
   </div>
 </template>
 
 <script>
-
+export default {
+  name: "app",
+  components: {},
+};
 </script>
 
 <style>
-
+@import "assets/css/base.css";
 </style>
