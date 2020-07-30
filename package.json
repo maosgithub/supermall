@@ -11,6 +11,7 @@
     "core-js": "^3.6.5",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.11",
+    "vue-baidu-map": "^0.21.22",
     "vue-router": "^3.3.4"
   },
   "devDependencies": {
@@ -38,9 +39,7 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {
-
-    }
+    "rules": {}
   },
   "browserslist": [
     "> 1%",
