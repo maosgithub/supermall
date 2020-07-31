@@ -6,6 +6,7 @@ const home = ()=> import('views/home/Home')
 const category = ()=> import('views/category/Category')
 const cart = ()=> import('views/cart/Cart')
 const profile = ()=> import('views/profile/Profile')
+const bmap = ()=> import('views/bmap/Bmap')
 Vue.use(VueRouter)
 
 const routes=[
@@ -29,7 +30,10 @@ const routes=[
     path:'/profile',
     component:profile
   },
-  
+  {
+    path:'/bmap',
+    component:bmap
+  },
 ]
 
 const router = new VueRouter({
