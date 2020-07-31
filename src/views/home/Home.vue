@@ -1,14 +1,48 @@
 <template>
-  <div>
-    <h2>首页</h2>
+  <div id="home">
+    <nav-bar class="home-nav">
+
+      <template v-slot:center>
+        <div>购物街</div>
+      </template>
+
+    </nav-bar>
   </div>
 </template>
 
 <script>
+import NavBar from "components/common/navbar/NavBar";
+import {getHomeMultidata} from 'network/home.js'
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    NavBar,
+  },
+  data(){
+    return {
+      banner:[],
+      dKeyword:null,
+      keywords:null,
+      recommend:[]
+    }
+  },
+  created(){
+    getHomeMultidata().then(
+      res=>{
+        this.banner = res.data.banner,
+        this.recommend=res.data.recommend,
+        this.dKeyword = res.data.dKeyword,
+        this.keywords = res.data.keywords
+      }
+    )
+    
+  }
 };
 </script>
 
 <style scoped>
+.home-nav {
+  background-color: var(--color-tint);
+  color: white;
+}
 </style>
