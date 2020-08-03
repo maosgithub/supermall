@@ -8,21 +8,24 @@
 
     <home-swiper :banner="banner"></home-swiper>
     <recommend-view :recommends="recommend"></recommend-view>
+    <feature-view :feature="feature"></feature-view>
   </div>
 </template>
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
-import { getHomeMultidata } from "network/home.js";
+import { getHomeMultidata,getHomeFeaturedata } from "network/home.js";
 import HomeSwiper from "./childComponent/HomeSwiper";
 import RecommendView from './childComponent/RecommendView'
+import FeatureView from './childComponent/FeatureView'
 
 export default {
   name: "Home",
   components: {
     NavBar,
     HomeSwiper,
-    RecommendView
+    RecommendView,
+    FeatureView
   },
   data() {
     return {
@@ -30,6 +33,7 @@ export default {
       dKeyword: null,
       keywords: null,
       recommend: [],
+      feature:[]
     };
   },
   created() {
@@ -39,6 +43,10 @@ export default {
         (this.dKeyword = res.data.dKeyword),
         (this.keywords = res.data.keywords);
     });
+    getHomeFeaturedata().then((res)=>{
+      this.feature = res.data.feature.list
+      // this.feature.length=4
+    })
   },
 };
 </script>

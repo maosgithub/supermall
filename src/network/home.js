@@ -5,3 +5,8 @@ export function getHomeMultidata(){
         url:'/home/multidata'
     })
 }
+export function getHomeFeaturedata(){
+    return request({
+        url:'/home/feature'
+    })
+}
