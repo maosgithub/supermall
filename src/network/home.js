@@ -10,3 +10,14 @@ export function getHomeFeaturedata(){
         url:'/home/feature'
     })
 }
+
+export function getHomeGoodsdata(type,
+    page){
+    return request({
+        url:'/home/goods',
+        params:{
+            type,
+            page
+        }
+    })
+}

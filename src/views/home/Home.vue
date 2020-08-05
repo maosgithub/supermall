@@ -10,7 +10,9 @@
     <recommend-view :recommends="recommend"></recommend-view>
     <feature-view :feature="feature"></feature-view>
     <tab-control class="tab-control" :titles="tabControlTitle"></tab-control>
-  
+
+    <goods-list :goods-list="goods.pop.list" ></goods-list>
+
     <div style="height:2000px">
       <div v-for="i in 50" :key="i">{{i}}</div>
     </div>
@@ -19,11 +21,16 @@
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
-import { getHomeMultidata, getHomeFeaturedata } from "network/home.js";
+import {
+  getHomeMultidata,
+  getHomeFeaturedata,
+  getHomeGoodsdata,
+} from "network/home.js";
 import HomeSwiper from "./childComponent/HomeSwiper";
 import RecommendView from "./childComponent/RecommendView";
 import FeatureView from "./childComponent/FeatureView";
 import TabControl from "components/content/tabControl/TabControl";
+import GoodsList from "components/content/Goods/GoodsList"
 export default {
   name: "Home",
   components: {
@@ -32,6 +39,7 @@ export default {
     RecommendView,
     FeatureView,
     TabControl,
+    GoodsList
   },
   data() {
     return {
@@ -41,6 +49,11 @@ export default {
       recommend: [],
       feature: [],
       tabControlTitle: ["流行", "新款", "精选"],
+      goods: {
+        pop: { page: 0, list: [] },
+        new: { page: 0, list: [] },
+        sell: { page: 0, list: [] },
+      },
     };
   },
   created() {
@@ -54,15 +67,29 @@ export default {
       this.feature = res.data.feature.list;
       // this.feature.length=4
     });
+    this.getHomeGoods("pop");
+    this.getHomeGoods("new");
+    this.getHomeGoods("sell");
+  },
+  methods: {
+    getHomeGoods(type) {
+      const page = this.goods[type].page + 1;
+      getHomeGoodsdata(type, page).then((res) => {
+        // this.goods[type].list = this.goods[type].list.concat(res.data.wall.docs);
+        this.goods[type].list.push(...res.data.wall.docs);
+        this.goods[type].page += 1;
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
 #home {
-    padding-top: 44px;
-    position: relative;
-  }
+  padding-top: 44px;
+  position: relative;
+  margin-bottom: 50px;
+}
 .home-nav {
   background-color: var(--color-tint);
   color: white;
@@ -72,8 +99,10 @@ export default {
   top: 0;
   z-index: 9;
 }
-.tab-control{
+.tab-control {
   position: sticky;
   top: 44px;
 }
+
+
 </style>
