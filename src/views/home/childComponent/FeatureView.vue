@@ -30,12 +30,14 @@ export default {
 .feature {
   text-align: center;
   padding: 10px 0 10px;
+  
 }
 .feature-title {
   font-size: 18px;
   height: 40px;
   line-height: 40px;
   font-weight: normal;
+
 }
 .features {
   display: flex;
@@ -58,5 +60,6 @@ export default {
 }
 .feature-item-title {
   margin-top: 10px;
+  color:var(--color-text)
 }
 </style>

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import MainTabBar from "components/content/MainTabBar/MainTabBar.vue";
+import MainTabBar from "components/content/MainTabBar/mainTabBar.vue";
 export default {
   name: "App",
   data() {
@@ -25,4 +25,5 @@ export default {
 
 <style>
 @import "assets/css/base.css";
+
 </style>
