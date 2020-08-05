@@ -41,11 +41,13 @@ export default {
   text-align: center;
   font-size: 15px;
   background-color: var(--color-background);
+  box-shadow:0 1px 1px rgba(100,100,100,0.08);
+
 }
 .tab-control-item {
   flex: 1;
-  height: 40px;
-  line-height: 40px;
+  height: 44px;
+  line-height: 44px;
 }
 .tab-control-item span{
   padding: 5px;
