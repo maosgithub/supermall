@@ -9,9 +9,9 @@
     <home-swiper :banner="banner"></home-swiper>
     <recommend-view :recommends="recommend"></recommend-view>
     <feature-view :feature="feature"></feature-view>
-    <tab-control class="tab-control" :titles="tabControlTitle"></tab-control>
+    <tab-control class="tab-control" :titles="tabControlTitle" @tabClick="tabClick"></tab-control>
 
-    <goods-list :goods-list="goods.pop.list" ></goods-list>
+    <goods-list :goods-list="goods[currentType].list"></goods-list>
 
     <div style="height:2000px">
       <div v-for="i in 50" :key="i">{{i}}</div>
@@ -30,7 +30,7 @@ import HomeSwiper from "./childComponent/HomeSwiper";
 import RecommendView from "./childComponent/RecommendView";
 import FeatureView from "./childComponent/FeatureView";
 import TabControl from "components/content/tabControl/TabControl";
-import GoodsList from "components/content/Goods/GoodsList"
+import GoodsList from "components/content/Goods/GoodsList";
 export default {
   name: "Home",
   components: {
@@ -39,7 +39,7 @@ export default {
     RecommendView,
     FeatureView,
     TabControl,
-    GoodsList
+    GoodsList,
   },
   data() {
     return {
@@ -54,6 +54,7 @@ export default {
         new: { page: 0, list: [] },
         sell: { page: 0, list: [] },
       },
+      currentType: "pop",
     };
   },
   created() {
@@ -80,6 +81,19 @@ export default {
         this.goods[type].page += 1;
       });
     },
+    tabClick(index) {
+      switch (index) {
+        case 0:
+          this.currentType = "pop";
+          break;
+        case 1:
+          this.currentType = "new";
+          break;
+        case 2:
+          this.currentType = "sell";
+          break;
+      }
+    },
   },
 };
 </script>
@@ -103,6 +117,4 @@ export default {
   position: sticky;
   top: 44px;
 }
-
-
 </style>
