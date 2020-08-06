@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .tab-control {
   position: sticky;
-  top: 44px;
+  top: 0px;
   display: flex;
   z-index: 9;
   flex-wrap: wrap;

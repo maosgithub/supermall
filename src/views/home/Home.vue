@@ -5,15 +5,14 @@
         <div>购物街</div>
       </template>
     </nav-bar>
-
-    <home-swiper :banner="banner"></home-swiper>
-    <recommend-view :recommends="recommend"></recommend-view>
-    <feature-view :feature="feature"></feature-view>
-    <tab-control class="tab-control" :titles="tabControlTitle" @tabClick="tabClick"></tab-control>
-
-    <goods-list :goods-list="goods[currentType].list"></goods-list>
-
-    <!-- <div style="height:2000px">
+    <scroll class="wrapper">
+      <home-swiper :banner="banner"></home-swiper>
+      <recommend-view :recommends="recommend"></recommend-view>
+      <feature-view :feature="feature"></feature-view>
+      <tab-control class="tab-control" :titles="tabControlTitle" @tabClick="tabClick"></tab-control>
+      <goods-list :goods-list="goods[currentType].list"></goods-list>
+    </scroll>
+    <!-- <div>
       <div v-for="i in 50" :key="i">{{i}}</div>
     </div> -->
   </div>
@@ -31,6 +30,8 @@ import RecommendView from "./childComponent/RecommendView";
 import FeatureView from "./childComponent/FeatureView";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/Goods/GoodsList";
+import Scroll from "components/common/scroll/Scroll";
+
 export default {
   name: "Home",
   components: {
@@ -40,6 +41,7 @@ export default {
     FeatureView,
     TabControl,
     GoodsList,
+    Scroll,
   },
   data() {
     return {
@@ -101,10 +103,11 @@ export default {
 <style scoped>
 #home {
   padding-top: 44px;
-  position: relative;
-  margin-bottom: 50px;
+  height: 100vh;
+
 }
 .home-nav {
+  
   background-color: var(--color-tint);
   color: white;
   position: fixed;
@@ -113,6 +116,11 @@ export default {
   top: 0;
   z-index: 9;
 }
+.wrapper{
+  height: calc(100% - 44px);
+  overflow: hidden;
+  overflow-y: scroll;
 
-
+  
+}
 </style>
