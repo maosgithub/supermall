@@ -37,12 +37,15 @@ export default {
 
 <style scoped>
 .tab-control {
+  position: sticky;
+  top: 44px;
   display: flex;
+  z-index: 9;
   flex-wrap: wrap;
   text-align: center;
   font-size: 15px;
   background-color: var(--color-background);
-  box-shadow:0 1px 1px rgba(100,100,100,0.08);
+  box-shadow:0 1px 1px rgba(100,100,100,0.1);
 
 }
 .tab-control-item {

@@ -13,9 +13,9 @@
 
     <goods-list :goods-list="goods[currentType].list"></goods-list>
 
-    <div style="height:2000px">
+    <!-- <div style="height:2000px">
       <div v-for="i in 50" :key="i">{{i}}</div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -113,8 +113,6 @@ export default {
   top: 0;
   z-index: 9;
 }
-.tab-control {
-  position: sticky;
-  top: 44px;
-}
+
+
 </style>
