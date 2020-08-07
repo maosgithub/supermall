@@ -22,7 +22,9 @@ export default {
   },
   methods:{
     imageLoad(){
-      this.$bus.$emit("goodsImgLoadEvent");
+      // this.$bus.$emit("goodsImgLoadEvent");
+      // console.log('this is v-on="$listeners"');
+      this.$emit('goodsImgLoadEvent')
     }
   },
 };

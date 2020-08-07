@@ -1,7 +1,11 @@
 <template>
   <div class="good-list">
     <goods-list-item 
-    v-for="goods in goodsList" :key="goods.index" :good-item="goods"></goods-list-item>
+    v-for="goods in goodsList" 
+    :key="goods.index" 
+    :good-item="goods"
+    v-on="$listeners"
+    ></goods-list-item>
   </div>
 </template>
 
