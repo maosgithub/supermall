@@ -19,13 +19,14 @@ export default {
     setTimeout(() => {
       BScroll.use(Pullup);
       this.scroll = new BScroll(this.$refs.wrapper, {});
-      this.scroll.on("scroll", () => {
-        console.log(0);
-      });
+      // this.scroll.on("scroll", () => {
+      //   console.log(0);
+      // });
     },1000);
   },
 };
 </script>
 
 <style scoped>
+
 </style>

@@ -5,7 +5,7 @@
         <div>购物街</div>
       </template>
     </nav-bar>
-    <scroll class="wrapper">
+    <scroll class="wrapper" ref="scroll">
       <home-swiper :banner="banner"></home-swiper>
       <recommend-view :recommends="recommend"></recommend-view>
       <feature-view :feature="feature"></feature-view>
@@ -14,7 +14,10 @@
     </scroll>
     <!-- <div>
       <div v-for="i in 50" :key="i">{{i}}</div>
-    </div> -->
+    </div>-->
+    <transition name="back-top">
+      <back-top  @click.native="backClick"/>
+    </transition>
   </div>
 </template>
 
@@ -31,6 +34,7 @@ import FeatureView from "./childComponent/FeatureView";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/Goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
+import BackTop from "components/content/backTop/BackTop";
 
 export default {
   name: "Home",
@@ -42,6 +46,7 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
+    BackTop,
   },
   data() {
     return {
@@ -96,6 +101,9 @@ export default {
           break;
       }
     },
+    backClick(){
+      this.$refs.scroll.scroll.scrollTo(0,0,1000)
+    }
   },
 };
 </script>
@@ -104,10 +112,8 @@ export default {
 #home {
   padding-top: 44px;
   height: 100vh;
-
 }
 .home-nav {
-  
   background-color: var(--color-tint);
   color: white;
   position: fixed;
@@ -116,11 +122,23 @@ export default {
   top: 0;
   z-index: 9;
 }
-.wrapper{
+.wrapper {
   height: calc(100% - 44px);
   overflow: hidden;
   overflow-y: scroll;
+}
 
-  
+
+
+.back-top-enter,
+.back-top-leave-to {
+  transform: translateX(1rem);
+  opacity: 0;
+}
+.back-top-enter-active {
+  transition: all 1s;
+}
+.back-top-leave-active {
+  transition: all 1s;
 }
 </style>
