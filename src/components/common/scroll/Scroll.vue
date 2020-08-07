@@ -24,6 +24,7 @@ export default {
     };
   },
   mounted() {
+    //
     // setTimeout(() => {
       BScroll.use(Pullup);
       this.scroll = new BScroll(this.$refs.wrapper, {
@@ -42,7 +43,7 @@ export default {
           this.$emit("pullingUpEvent");
         });
       }
-      console.log(this.scroll);
+      // console.log(this.scroll);
     // }, 0);
   },
   methods: {

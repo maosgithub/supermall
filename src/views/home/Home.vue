@@ -17,10 +17,7 @@
       <recommend-view :recommends="recommend"></recommend-view>
       <feature-view :feature="feature"></feature-view>
       <tab-control class="tab-control" :titles="tabControlTitle" @tabClick="tabClick"></tab-control>
-      <goods-list 
-      :goods-list="goods[currentType].list"
-      @goodsImgLoadEvent="goodsImgLoadEvent"
-      ></goods-list>
+      <goods-list :goods-list="goods[currentType].list" @goodsImgLoadEvent="goodsImgLoadEvent"></goods-list>
     </scroll>
     <!-- <div>
       <div v-for="i in 50" :key="i">{{i}}</div>
@@ -90,8 +87,6 @@ export default {
     this.getHomeGoods("pop");
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
-
-
   },
   mounted() {
     // this.$refs.scroll.refresh()
@@ -107,9 +102,22 @@ export default {
   //   console.log("销毁Home的bus");
   // },
   methods: {
-    goodsImgLoadEvent(){
-      this.$refs.scroll.refresh()
+    goodsImgLoadEvent() {
+      function debouncd(func, delay) {
+        
+        let timer = null;
+        return function (...args) {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => {
+            console.log('------');
+            func.apply(this, args);
+          }, delay);
+        };
+      }
+      // this.$refs.scroll.refresh()
+      debouncd(this.$refs.scroll.refresh, 200)();
     },
+
 
     getHomeGoods(type) {
       const page = this.goods[type].page + 1;
