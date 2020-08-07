@@ -143,7 +143,7 @@ export default {
       // if (this.goods[this.currentType].page < 2) {
       // this.getHomeGoods(this.currentType);
       // }
-
+      this.getHomeGoods(this.currentType);
       console.log("上拉了");
       setTimeout(() => {
         this.$refs.scroll.finishPullUp();
