@@ -5,7 +5,14 @@
         <div>购物街</div>
       </template>
     </nav-bar>
-    <scroll class="wrapper" ref="scroll">
+    <scroll
+      class="wrapper"
+      ref="scroll"
+      @scrollEvent="contentScroll"
+      prope-type="3"
+      pull-up-load="true"
+      @pullingUpEvent="loadMore"
+    >
       <home-swiper :banner="banner"></home-swiper>
       <recommend-view :recommends="recommend"></recommend-view>
       <feature-view :feature="feature"></feature-view>
@@ -16,7 +23,7 @@
       <div v-for="i in 50" :key="i">{{i}}</div>
     </div>-->
     <transition name="back-top">
-      <back-top  @click.native="backClick"/>
+      <back-top @click.native="backClick" v-show="isShowTop" />
     </transition>
   </div>
 </template>
@@ -62,6 +69,8 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
+      topCheck: false,
+      isShowTop: false,
     };
   },
   created() {
@@ -78,7 +87,24 @@ export default {
     this.getHomeGoods("pop");
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
+
+    this.$bus.$on('goodsImgLoadEvent',()=>{
+      this.$refs.scroll.refresh()
+    })
   },
+  mounted() {
+    // this.$refs.scroll.refresh()
+  },
+  // activated() {
+  //   //this.bcFunc 混入进来的
+  //   console.log(this.bcFunc);
+  //   this.$bus.$on("goodsImgLoadEvent", this.bcFunc);
+  // },
+  // deactivated() {
+  //   // 通过给 $off第二参数传递一个函数，可以让其只销毁home里的事件，而不会销毁detail里的事件
+  //   this.$bus.$off("goodsImgLoadEvent", this.bcFunc);
+  //   console.log("销毁Home的bus");
+  // },
   methods: {
     getHomeGoods(type) {
       const page = this.goods[type].page + 1;
@@ -101,9 +127,29 @@ export default {
           break;
       }
     },
-    backClick(){
-      this.$refs.scroll.scroll.scrollTo(0,0,1000)
-    }
+    backClick() {
+      this.$refs.scroll.scroll.scrollTo(0, 0, 1000);
+    },
+    contentScroll(pos) {
+      //滚动条实时监听
+      this.isShowTop = -pos.y > 1000;
+      this.topCheck = -pos.y > this.tabControloffsetTop;
+    },
+    loadMore() {
+      //下拉加载更多goods，但是会有bug，该bug由于DOM高度问题
+      //图片的DOM高度是异步加载的，所以没那么快能加载出来，会导致scroll的高度跟不上
+      //如何解决？
+      //让img每次加载完之后，就refresh()一次滚动条
+      // if (this.goods[this.currentType].page < 2) {
+      // this.getHomeGoods(this.currentType);
+      // }
+
+      console.log("上拉了");
+      setTimeout(() => {
+        this.$refs.scroll.finishPullUp();
+        this.$refs.scroll.refresh();
+      }, 2000);
+    },
   },
 };
 </script>
@@ -123,12 +169,10 @@ export default {
   z-index: 9;
 }
 .wrapper {
-  height: calc(100% - 44px);
+  height: calc(100% - 49px);
   overflow: hidden;
   overflow-y: scroll;
 }
-
-
 
 .back-top-enter,
 .back-top-leave-to {
