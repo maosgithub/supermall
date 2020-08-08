@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @mousewheel.prevent>
     <router-view></router-view>
     <main-tab-bar></main-tab-bar>
     
