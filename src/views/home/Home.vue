@@ -42,6 +42,7 @@ import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/Goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
 import BackTop from "components/content/backTop/BackTop";
+import {debounce} from "common/utils.js"
 
 export default {
   name: "Home",
@@ -103,19 +104,9 @@ export default {
   // },
   methods: {
     goodsImgLoadEvent() {
-      function debouncd(func, delay) {
-        
-        let timer = null;
-        return function (...args) {
-          if (timer) clearTimeout(timer);
-          timer = setTimeout(() => {
-            console.log('------');
-            func.apply(this, args);
-          }, delay);
-        };
-      }
-      // this.$refs.scroll.refresh()
-      debouncd(this.$refs.scroll.refresh, 200)();
+      debounce(this.$refs.scroll.refresh, 200)();
+
+
     },
 
 
@@ -145,6 +136,7 @@ export default {
     },
     contentScroll(pos) {
       //滚动条实时监听
+      //用于判断是否滚动
       this.isShowTop = -pos.y > 1000;
       this.topCheck = -pos.y > this.tabControloffsetTop;
     },
@@ -159,9 +151,9 @@ export default {
       this.getHomeGoods(this.currentType);
       console.log("上拉了");
       setTimeout(() => {
-        this.$refs.scroll.finishPullUp();
-        this.$refs.scroll.refresh();
-      }, 2000);
+      this.$refs.scroll.finishPullUp();
+        // this.$refs.scroll.refresh();
+      }, 1000);
     },
   },
 };

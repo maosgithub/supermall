@@ -24,7 +24,9 @@ export default {
     };
   },
   mounted() {
-    //
+    console.log('scroll mounted time');
+
+
     // setTimeout(() => {
       BScroll.use(Pullup);
       this.scroll = new BScroll(this.$refs.wrapper, {
@@ -33,12 +35,14 @@ export default {
         pullUpLoad: this.pullUpLoad,
       });
       if (this.probeType != 0) {
+        //绑定滚动事件
         this.scroll.on("scroll", (pos) => {
           //将pos发送给父组件，让其根据pos修改 backTop组件的显示隐藏
           this.$emit("scrollEvent", pos);
         });
       }
       if (this.pullUpLoad) {
+        //绑定上拉事件
         this.scroll.on("pullingUp", () => {
           this.$emit("pullingUpEvent");
         });
