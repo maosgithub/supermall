@@ -87,6 +87,7 @@ export default {
 
       //tab-control组件
       tabControloffsetTop: null,
+      saveY:0
     };
   },
   created() {
@@ -110,16 +111,21 @@ export default {
     // console.log(this.tabOffsetTop.$el.offsetTop);
     // this.$refs.scroll.refresh()
   },
-  // activated() {
-  //   //this.bcFunc 混入进来的
-  //   console.log(this.bcFunc);
-  //   this.$bus.$on("goodsImgLoadEvent", this.bcFunc);
-  // },
-  // deactivated() {
-  //   // 通过给 $off第二参数传递一个函数，可以让其只销毁home里的事件，而不会销毁detail里的事件
-  //   this.$bus.$off("goodsImgLoadEvent", this.bcFunc);
-  //   console.log("销毁Home的bus");
-  // },
+  activated() {
+    //this.bcFunc 混入进来的
+    console.log('activated');
+    this.$refs.scroll.scrollTo(0,this.saveY)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    // 通过给 $off第二参数传递一个函数，可以让其只销毁home里的事件，而不会销毁detail里的事件
+    console.log('deactivated');
+    this.saveY=this.$refs.scroll.getScrollY()
+    // this.$refs.scroll.refresh()
+  },
+  destroyed(){
+    console.log('why are you destroyed');
+  },
   methods: {
     goodsImgLoadEvent() {
       debounce(this.$refs.scroll.refresh, 200)();
@@ -137,12 +143,15 @@ export default {
       switch (index) {
         case 0:
           this.currentType = "pop";
+
           break;
         case 1:
           this.currentType = "new";
+
           break;
         case 2:
           this.currentType = "sell";
+
           break;
       }
     },
