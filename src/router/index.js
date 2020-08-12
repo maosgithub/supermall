@@ -6,6 +6,7 @@ const home = ()=> import('views/home/Home')
 const category = ()=> import('views/category/Category')
 const cart = ()=> import('views/cart/Cart')
 const profile = ()=> import('views/profile/Profile')
+const detail = ()=> import('views/detail/Detail')
 const bmap = ()=> import('views/bmap/Bmap')
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes=[
     component:profile
   },
   {
+    path:'/detail/:id',
+    component:detail
+  },
+
+  {
     path:'/bmap',
     component:bmap
   },
@@ -40,7 +46,7 @@ const routes=[
 
 const router = new VueRouter({
   routes,
-  mode:'history'
+  mode:'history' 
 })
 
 export default router

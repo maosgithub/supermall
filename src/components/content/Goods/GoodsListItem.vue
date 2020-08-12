@@ -1,12 +1,12 @@
 <template>
-  <div class="goods-item">
-    <a :href="goodItem.link">
-        <img :src="goodItem.img" alt=""  @load="imageLoad"/>
-    <div class="goods-info">
-      <p>{{goodItem.title}}</p>
-      <span class="price">￥{{goodItem.price}}</span>
-      <span class="collect">{{goodItem.cfav}}</span>
-    </div></a>
+  <div class="goods-item" @click="itemClick">
+
+      <img :src="goodItem.img" alt @load="imageLoad" />
+      <div class="goods-info">
+        <p>{{goodItem.title}}</p>
+        <span class="price">￥{{goodItem.price}}</span>
+        <span class="collect">{{goodItem.cfav}}</span>
+      </div>
   </div>
 </template>
 
@@ -21,12 +21,15 @@ export default {
       },
     },
   },
-  methods:{
-    imageLoad(){
+  methods: {
+    imageLoad() {
       // this.$bus.$emit("goodsImgLoadEvent");
       // console.log('this is v-on="$listeners"');
-      this.$emit('goodsImgLoadEvent')
-    }
+      this.$emit("goodsImgLoadEvent");
+    },
+    itemClick(){
+      this.$router.push(`/detail/${this.goodItem.iid}`)
+    },
   },
 };
 </script>
