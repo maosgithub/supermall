@@ -6,7 +6,13 @@
 
 <script>
 	export default {
-		name: "Slide"
+    name: "Slide",
+    mounted() {
+      console.log('sssssssssss')
+    },
+    methods:{
+
+    }
 	}
 </script>
 

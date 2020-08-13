@@ -1,6 +1,6 @@
 <template>
   <div id="hy-swiper">
-    <div class="swiper" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+    <div class="swiper" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" ref="swiper">
       <slot></slot>
     </div>
     <slot name="indicator"></slot>
@@ -54,7 +54,9 @@ export default {
 
       // 2.开启定时器
       this.startTimer();
-    }, 100);
+    }, 2000);
+
+
   },
   methods: {
     /**
@@ -111,6 +113,7 @@ export default {
     /**
      * 设置滚动的位置
      */
+
     setTransform: function (position) {
       this.swiperStyle.transform = `translate3d(${position}px, 0, 0)`;
       this.swiperStyle[
@@ -124,12 +127,16 @@ export default {
      */
     handleDom: function () {
       // 1.获取要操作的元素
+      
       let swiperEl = document.querySelector(".swiper");
+
+
       let slidesEls = swiperEl.getElementsByClassName("slide");
+      console.log(slidesEls.length);
+
 
       // 2.保存个数
       this.slideCount = slidesEls.length;
-
       // 3.如果大于1个, 那么在前后分别添加一个slide
       if (this.slideCount > 1) {
         let cloneFirst = slidesEls[0].cloneNode(true);
