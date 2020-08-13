@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
     <detail-nav-bar class="nav-bar"></detail-nav-bar>
-    <!-- <img :src="item" alt="" v-for="(item,index) in top_images" :key="index" style="width:100%"> -->
+    <img :src="item" alt="" v-for="(item,index) in top_images" :key="index" style="width:100%">
 
 
   </div>
