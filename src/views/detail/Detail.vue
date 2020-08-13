@@ -17,6 +17,9 @@
       <goods-list :goods-list="recommend" ref="recommendRef"></goods-list>
       <!-- <img :src="item" alt v-for="(item,index) in topImages" :key="index" style="width:100%" /> -->
     </scroll>
+    <transition name="back-top">
+      <back-top @click.native="backClick" v-show="isShowTop" />
+    </transition>
   </div>
 </template>
 
@@ -37,6 +40,7 @@ import DetailParams from "views/detail/childComponents/DetailParams";
 import DetailComment from "views/detail/childComponents/DetailComment";
 import Scroll from "components/common/scroll/Scroll.vue";
 import GoodsList from "components/content/Goods/GoodsList.vue";
+import BackTop from "components/content/backTop/BackTop";
 
 export default {
   name: "Detail",
@@ -51,6 +55,7 @@ export default {
     DetailComment,
     GoodsList,
     Scroll,
+    BackTop
   },
   data() {
     return {
@@ -145,6 +150,9 @@ export default {
     },
     changeScrollOffset(index) {
       this.$refs.scroll.scrollToElement(this.$refs[this.theme[index]].$el, 200);
+    },
+        backClick() {
+      this.$refs.scroll.scroll.scrollTo(0, 0, 1000);
     },
   },
 };

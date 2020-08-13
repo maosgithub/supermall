@@ -11,13 +11,14 @@
       @tabClick="tabClick"
 
       v-show="topCheck"
+      ref="topTabControl"
       
     />
     <scroll
       class="wrapper"
       ref="scroll"
       @scrollEvent="contentScroll"
-      prope-type="3"
+      :probe-type="3"
       :pull-up-load="true"
       @pullingUpEvent="loadMore"
     >
@@ -143,17 +144,16 @@ export default {
       switch (index) {
         case 0:
           this.currentType = "pop";
-
           break;
         case 1:
           this.currentType = "new";
-
           break;
         case 2:
           this.currentType = "sell";
-
           break;
       }
+      this.$refs.topTabControl.currentIndex=index
+      this.$refs.tabControl.currentIndex=index
     },
     backClick() {
       this.$refs.scroll.scroll.scrollTo(0, 0, 1000);
@@ -162,6 +162,7 @@ export default {
       //滚动条实时监听
       //用于判断是否滚动
       // console.log(-pos.y);
+
       this.isShowTop = -pos.y > 1000;
       
       this.topCheck = -pos.y> this.tabControloffsetTop.$el.offsetTop;
