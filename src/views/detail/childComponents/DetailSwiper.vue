@@ -1,29 +1,22 @@
 <template>
-  <swiper ref="swiper" class="detail_swiper">
-    <swiper-item
-      v-for="(item, index) in topImgs"
-      :key="index"
-      :count="topImgs.length"
-      @slideEven="slideLoadOn"
-    >
-      <img :src="item" alt=""  />
-    </swiper-item>
+  <swiper ref="swiper" class="detail_swiper" v-bind="$attrs">
+
   </swiper>
 </template>
 <script>
-import { Swiper, SwiperItem } from "components/common/swiper/index.js";
+import { Swiper} from "./swiper/index.js";
 export default {
   components: {
     Swiper,
-    SwiperItem
+
   },
-  props: {
-    topImgs: Array
-  },
+  // props: {
+  //   topImgs: Array
+  // },
   methods: {
-    slideLoadOn() {
-      this.$refs.swiper.slideOn();
-    }
+    // slideLoadOn() {
+    //   this.$refs.swiper.slideOn();
+    // }
   }
 };
 </script>
