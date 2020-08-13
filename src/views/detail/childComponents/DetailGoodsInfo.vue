@@ -4,20 +4,16 @@
       <div style="float: left;" class="desc_line">
         <i class="desc_dot"></i>
       </div>
-      <div class="desc_text">
-        {{ detailInfo.desc }}
-      </div>
+      <div class="desc_text">{{ detailInfo.desc }}</div>
       <div style="float: right;" class="desc_line">
         <i style="right: 0px;" class="desc_dot"></i>
       </div>
     </div>
-    <div class="goods_info_key">
-      {{ detailInfo.detailImage[0].key }}
-    </div>
+    <div class="goods_info_key">{{ detailInfo.detailImage[0].key }}</div>
     <div class="goods_info_imgs">
       <img
         :src="item"
-        alt=""
+        alt
         v-for="(item, index) in detailInfo.detailImage[0].list"
         :key="index"
         @load="loadImg"
@@ -32,14 +28,22 @@ export default {
       type: Object,
       default() {
         return {};
-      }
-    }
+      },
+    },
+  },
+  data() {
+    return {
+      imgCount: 0,
+    };
   },
   methods: {
     loadImg() {
-      this.$emit("loadImgEvent");
-    }
-  }
+      this.imgCount += 1;
+      if (this.imgCount === this.detailInfo.detailImage[0].list.length) {
+        this.$emit("loadImgEvent");
+      }
+    },
+  },
 };
 </script>
 <style scoped>

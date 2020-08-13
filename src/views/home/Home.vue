@@ -18,7 +18,7 @@
       ref="scroll"
       @scrollEvent="contentScroll"
       prope-type="3"
-      pull-up-load="true"
+      :pull-up-load="true"
       @pullingUpEvent="loadMore"
     >
       <home-swiper :banner="banner"></home-swiper>

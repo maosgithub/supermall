@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     itemClick(index) {
-      // this.currIndex = index; 让滚动自己判断是否红
+      this.currIndex = index; //让滚动自己判断是否红
       this.$emit("itemClickEvent", index);
     },
     backClick() {
