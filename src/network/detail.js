@@ -13,9 +13,9 @@ export class Goods {
     constructor(itemInfo, columns, services) {
       this.title = itemInfo.title;
       this.desc = itemInfo.desc;
-      this.oldPrice = itemInfo.oldPrice;
+      this.oldPrice = itemInfo.highPrice;
       this.lowNowPrice = itemInfo.lowNowPrice;
-      this.price = itemInfo.price;
+      this.price = itemInfo.lowNowPrice;
       this.discountBgColor = itemInfo.discountBgColor;
       this.discountDesc = itemInfo.discountDesc;
   
@@ -33,6 +33,8 @@ export class Goods {
       this.goods = shopInfo.cGoods;
       this.sells = shopInfo.cSells;
       this.name = shopInfo.name;
+      this.url = shopInfo.shopUrl;
+      
     }
   }
   

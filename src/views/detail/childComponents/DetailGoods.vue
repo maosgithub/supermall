@@ -7,25 +7,17 @@
       <del>
         <span class="o_price">{{ goods.oldPrice }}</span>
       </del>
-      <span :style="{ backgroundColor: goods.discountBgColor }" class="discount"
-        >{{ goods.discountDesc }}
-      </span>
+      <span
+        :style="{ backgroundColor: goods.discountBgColor }"
+        class="discount"
+      >{{ goods.discountDesc }}</span>
     </div>
-
-    <div class="columns">
-      <span v-for="(item, index) in goods.columns" :key="index">{{
-        item
-      }}</span>
-    </div>
-
     <div class="services">
-      <div
-        v-for="(item, index) in goods.services"
-        :key="index"
-      >
-      <div v-if="itemShow(item)"> <img :src="item.icon" alt="" />
-        <span>{{ item.name }}</span></div>
-       
+      <div v-for="(item, index) in goods.services" :key="index" class="service-item">
+        <div>
+          <span><img :src="item.icon" alt /></span>
+          <span>{{ item.name }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -33,15 +25,15 @@
 <script>
 export default {
   props: {
-    goods: {}
+    goods: {},
   },
   computed: {
     itemShow() {
-      return function(item) {
+      return function (item) {
         return item.icon && item.name !== "72小时发货";
       };
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -49,19 +41,23 @@ export default {
   padding: 0.42rem;
 }
 .title {
-  font-size: 0.768rem;
+  font-size: 1rem;
+  line-height: 1.3rem;
 }
 
 .info {
   margin: 0.42rem 0;
+  /* border-bottom: 0.042rem solid rgba(128, 128, 128, 0.3); */
+  padding-bottom: 0.42rem;
+  border-bottom: 0.1rem solid rgba(128, 128, 128, 0.3);
 }
 .n_price {
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   color: var(--color-high-text);
 }
 .o_price {
   margin: 0 0.21rem;
-  font-size: 0.512rem;
+  font-size: 0.8rem;
   color: gray;
 }
 .discount {
@@ -85,12 +81,21 @@ export default {
 
 .services {
   display: flex;
-  font-size: 0.6rem;
+  font-size: 12px;
   justify-content: space-between;
   padding: 0.85rem 0;
   border-bottom: 0.128rem solid rgba(128, 128, 128, 0.2);
+
+  
+}
+.services-item{
+  flex: 1;
+  
 }
 .services img {
-  width: 0.512rem;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
 }
+
 </style>

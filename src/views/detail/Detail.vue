@@ -1,15 +1,21 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="nav-bar"></detail-nav-bar>
+    <detail-nav-bar class="nav-bar" @itemClickEvent="changeScrollOffset"></detail-nav-bar>
 
-    <scroll 
-    class="detail_wrapper" 
-    ref="scroll" 
-    :probe-type="3" 
-    @scrollEvent="scrollOn" 
-    :pullUpLoad="false">
+    <scroll
+      class="detail_wrapper"
+      ref="scroll"
+      :probe-type="3"
+      @scrollEvent="scrollOn"
+      :pullUpLoad="false"
+    >
       <detail-swiper :top-imgs="topImages" class="detail-swiper"></detail-swiper>
-      <img :src="item" alt v-for="(item,index) in topImages" :key="index" style="width:100%" />
+      <detail-goods :goods="goods" class=".m-b-t-20" />
+      <detail-shop-info :shop="shop" />
+      <detail-goods-info :detailInfo="detailInfo" @loadImgEvent="loadImgOk" />
+      <detail-params :paramInfo="paramInfo" ref="paramsRef" />
+      <detail-comment :comment="comment" ref="commentRef" />
+      <!-- <img :src="item" alt v-for="(item,index) in topImages" :key="index" style="width:100%" /> -->
     </scroll>
   </div>
 </template>
@@ -18,13 +24,24 @@
 import { getDetail, Goods, Shop, GoodsParam } from "network/detail.js";
 import DetailNavBar from "views/detail/childComponents/DetailNavBar";
 import DetailSwiper from "views/detail/childComponents/DetailSwiper";
+import DetailGoods from "views/detail/childComponents/DetailGoods";
+import DetailShopInfo from "views/detail/childComponents/DetailShopInfo";
+import DetailGoodsInfo from "views/detail/childComponents/DetailGoodsInfo";
+import DetailParams from "views/detail/childComponents/DetailParams";
+import DetailComment from "views/detail/childComponents/DetailComment";
 import Scroll from "components/common/scroll/Scroll.vue";
+
 export default {
   name: "Detail",
   components: {
     DetailNavBar,
     DetailSwiper,
     Scroll,
+    DetailGoods,
+    DetailShopInfo,
+    DetailGoodsInfo,
+    DetailParams,
+    DetailComment,
   },
   data() {
     return {
@@ -49,9 +66,7 @@ export default {
     // });
     this.getDetail(this.itemId);
   },
-  mounted(){
-
-  },
+  mounted() {},
   methods: {
     async getDetail(iid) {
       let res = await getDetail(iid);
@@ -86,7 +101,7 @@ export default {
         }
       }
       setTimeout(() => {
-      this.$refs.scroll.refresh()
+        this.$refs.scroll.refresh();
       }, 500);
     },
     scrollOn(pos) {
@@ -104,6 +119,12 @@ export default {
       //   }
       // }
     },
+    loadImgOk() {
+      this.$refs.scroll.refresh();
+    },
+    changeScrollOffset(index) {
+      this.$refs.scroll.scrollToElement(this.$refs[this.theme[index]].$el, 200);
+    },
   },
 };
 </script>
@@ -114,6 +135,9 @@ export default {
 
   height: 100vh;
   padding-top: 44px;
+}
+.m-b-t-20 {
+  margin: 20px 0;
 }
 .detail_wrapper {
   position: absolute;
