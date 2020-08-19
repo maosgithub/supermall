@@ -20,6 +20,7 @@
     <transition name="back-top">
       <back-top @click.native="backClick" v-show="isShowTop" />
     </transition>
+    <detail-bottom-bar @addEvent="addToCart"></detail-bottom-bar>
   </div>
 </template>
 
@@ -38,6 +39,7 @@ import DetailShopInfo from "views/detail/childComponents/DetailShopInfo";
 import DetailGoodsInfo from "views/detail/childComponents/DetailGoodsInfo";
 import DetailParams from "views/detail/childComponents/DetailParams";
 import DetailComment from "views/detail/childComponents/DetailComment";
+import DetailBottomBar from "views/detail/childComponents/DetailBottomBar";
 import Scroll from "components/common/scroll/Scroll.vue";
 import GoodsList from "components/content/Goods/GoodsList.vue";
 import BackTop from "components/content/backTop/BackTop";
@@ -55,7 +57,8 @@ export default {
     DetailComment,
     GoodsList,
     Scroll,
-    BackTop
+    BackTop,
+    DetailBottomBar,
   },
   data() {
     return {
@@ -151,9 +154,13 @@ export default {
     changeScrollOffset(index) {
       this.$refs.scroll.scrollToElement(this.$refs[this.theme[index]].$el, 200);
     },
-        backClick() {
+    backClick() {
       this.$refs.scroll.scroll.scrollTo(0, 0, 1000);
     },
+    addToCart(){
+      //TODO
+      //实现购物车
+    }
   },
 };
 </script>

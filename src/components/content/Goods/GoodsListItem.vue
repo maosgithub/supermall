@@ -28,7 +28,8 @@ export default {
       this.$emit("goodsImgLoadEvent");
     },
     itemClick(){
-      this.$router.push(`/detail/${this.goodItem.iid}`)
+      let item_id = this.goodItem.iid ||this.goodItem.item_id
+      this.$router.push(`/detail/${item_id}`)
     },
   },
 };
