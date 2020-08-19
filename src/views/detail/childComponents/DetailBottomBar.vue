@@ -30,7 +30,7 @@ export default {
     addToCart() {
       this.$emit("addEvent");
     }
-  }
+  },
 };
 </script>
 <style scoped>

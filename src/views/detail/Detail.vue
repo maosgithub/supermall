@@ -158,8 +158,15 @@ export default {
       this.$refs.scroll.scroll.scrollTo(0, 0, 1000);
     },
     addToCart(){
-      //TODO
-      //实现购物车
+      console.log('djasidj');
+      const obj = {
+        iid: this.itemId,
+        desc: this.goods.desc,
+        price: this.goods.lowNowPrice,
+        title: this.goods.title,
+        img: this.topImages[0]
+      };
+      console.log(obj);
     }
   },
 };
