@@ -8,10 +8,8 @@
 	export default {
     name: "Slide",
     mounted() {
-      console.log('sssssssssss')
     },
     methods:{
-
     }
 	}
 </script>

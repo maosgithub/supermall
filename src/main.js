@@ -7,7 +7,7 @@ import store from './store';
 import Toast from "components/common/toast/index.js";
 import VueLazyLoad from "vue-lazyload";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 Vue.use(Toast);
 Vue.use(VueLazyLoad, {
   loading: require("assets/img/common/placeholder.png")

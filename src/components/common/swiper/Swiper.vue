@@ -132,7 +132,7 @@ export default {
 
 
       let slidesEls = swiperEl.getElementsByClassName("slide");
-      console.log(slidesEls.length);
+      // console.log(slidesEls.length);
 
 
       // 2.保存个数

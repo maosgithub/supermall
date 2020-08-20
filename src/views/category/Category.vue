@@ -38,7 +38,7 @@ export default {
   },
   methods:{
     btnClick(){
-      console.log('this is button');
+      // console.log('this is button');
     }
   }
 };

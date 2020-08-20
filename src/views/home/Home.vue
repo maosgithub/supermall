@@ -125,7 +125,7 @@ export default {
     // this.$refs.scroll.refresh()
   },
   destroyed(){
-    console.log('why are you destroyed');
+    // console.log('why are you destroyed');
   },
   methods: {
     goodsImgLoadEvent() {

@@ -158,7 +158,6 @@ export default {
       this.$refs.scroll.scroll.scrollTo(0, 0, 1000);
     },
     addToCart() {
-      console.log("djasidj");
       const obj = {
         iid: this.itemId,
         desc: this.goods.desc,
