@@ -8,7 +8,7 @@
       ref="swiper"
     >
       <swiper-item v-for="(item, index) in topImgs" :key="index" :count="topImgs.length">
-        <img :src="item" alt />
+        <img v-lazy="item" alt />
       </swiper-item>
     </div>
     <slot name="indicator"></slot>

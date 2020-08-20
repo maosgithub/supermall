@@ -1,15 +1,43 @@
 <template>
-    <div>
-        <h2>购物车</h2>
-    </div>
+  <div id="cart">
+    <nav-bar class="cart_nav_bar">
+      <template v-slot:center>
+        <div>购物车({{ cartLength }})</div>
+      </template>
+    </nav-bar>
+    <cart-list></cart-list>
+    <cart-total></cart-total>
+  </div>
 </template>
-
 <script>
-    export default {
-        name:'Cart'
-    }
-</script>
+import NavBar from "components/common/navbar/NavBar.vue";
 
+import CartList from "./childComps/CartList.vue";
+import CartTotal from "./childComps/CartTotal.vue";
+
+export default {
+  name:"cart",
+  data() {
+    return {};
+  },
+  computed: {
+    cartLength() {
+      return this.$store.state.cartList.length;
+    }
+  },
+  components: {
+    NavBar,
+
+    CartList,
+    CartTotal
+  },
+  methods: {}
+};
+</script>
 <style scoped>
+.cart_nav_bar {
+  background-color: var(--color-tint);
+  color: white;
+}
 
 </style>

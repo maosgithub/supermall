@@ -157,17 +157,24 @@ export default {
     backClick() {
       this.$refs.scroll.scroll.scrollTo(0, 0, 1000);
     },
-    addToCart(){
-      console.log('djasidj');
+    addToCart() {
+      console.log("djasidj");
       const obj = {
         iid: this.itemId,
         desc: this.goods.desc,
         price: this.goods.lowNowPrice,
         title: this.goods.title,
-        img: this.topImages[0]
+        img: this.topImages[0],
       };
-      console.log(obj);
-    }
+      this.$store
+        .dispatch("ChangeCart", obj)
+        .then(() => {
+          this.$toast.show("加入购物车");
+        })
+        .catch(() => {
+          this.$toast.show("购买数量+1");
+        });
+    },
   },
 };
 </script>
