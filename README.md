@@ -6,5 +6,5 @@
 `npm run serve`
 
 ### demo
-实际效果可以直接点击以下链接进行查看，浏览器按F12进入移动端模式
+实际效果可以直接点击以下链接进行查看，浏览器按F12进入移动端模式  
 [https://ac.wanshaohua.com](https://ac.wanshaohua.com) 
